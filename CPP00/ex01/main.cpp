@@ -6,14 +6,28 @@
 /*   By: mlagrini <mlagrini@1337.student.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 12:19:01 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/05 22:28:02 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/08/05 22:51:14 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 
-void	AssignInfo(PhoneBook pb, std::string cmd, int index)
+bool	CheckValidNbr(std::string str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!std::isdigit(str[i]))
+			return (true);
+		i++;
+	}
+	return (false);
+}
+
+void	AssignInfo(PhoneBook pb, int index)
 {
 	std::string		str;
 	
@@ -50,24 +64,40 @@ void	AssignInfo(PhoneBook pb, std::string cmd, int index)
 			pb.getContact().setContactNn(str);
 			break ;
 		}
-		std::cout << "Enter the phone number: ";
-		if (!std::getline(std::cin, str))
-			exit (0);
-		if (str.empty())
-			continue ;
-		if (CheckValidNbr(str))
+		while (1)
 		{
-			std::cout << "The number is not valid" << std::endl;
-			continue ;
+			std::cout << "Enter the phone number: ";
+			if (!std::getline(std::cin, str))
+				exit (0);
+			if (str.empty())
+				continue ;
+			if (CheckValidNbr(str))
+			{
+				std::cout << "Invalid input" << std::endl;
+				continue ;
+			}
+			pb.getContact().setContactNbr(str);
+			break ;
 		}
+		while (1)
+		{
+			std::cout << "Enter your darkest secret: ";
+			if (!std::getline(std::cin, str))
+				exit (0);
+			if (str.empty())
+				continue ;
+			pb.getContact().setContactDs(str);
+			break ;
+		}
+		std::cout << "Your contact has been added!!" << std::endl;
 		break ;
-		}
+	}
 }
 
 void	Commands(PhoneBook pb, std::string cmd, int index)
 {
 	if (cmd == "ADD")
-		AssignInfo(pb, cmd, index);
+		AssignInfo(pb, index);
 }
 
 int	main(void)
