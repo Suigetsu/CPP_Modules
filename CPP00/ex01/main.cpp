@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@1337.student.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 12:19:01 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/05 22:51:14 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/08/06 13:18:40 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	AssignInfo(PhoneBook pb, int index)
 		{
 			std::cout << "Enter the first name: ";
 			if (!std::getline(std::cin, str))
-				exit (0);
+				exit (1);
 			if (str.empty())
 				continue ;
 			pb.getContact().setContactFn(str);
@@ -48,7 +48,7 @@ void	AssignInfo(PhoneBook pb, int index)
 		{
 			std::cout << "Enter the last name: ";
 			if (!std::getline(std::cin, str))
-				exit (0);
+				exit (1);
 			if (str.empty())
 				continue ;
 			pb.getContact().setContactLn(str);
@@ -58,7 +58,7 @@ void	AssignInfo(PhoneBook pb, int index)
 		{
 			std::cout << "Enter the nickname: ";
 			if (!std::getline(std::cin, str))
-				exit (0);
+				exit (1);
 			if (str.empty())
 				continue ;
 			pb.getContact().setContactNn(str);
@@ -68,7 +68,7 @@ void	AssignInfo(PhoneBook pb, int index)
 		{
 			std::cout << "Enter the phone number: ";
 			if (!std::getline(std::cin, str))
-				exit (0);
+				exit (1);
 			if (str.empty())
 				continue ;
 			if (CheckValidNbr(str))
@@ -83,7 +83,7 @@ void	AssignInfo(PhoneBook pb, int index)
 		{
 			std::cout << "Enter your darkest secret: ";
 			if (!std::getline(std::cin, str))
-				exit (0);
+				exit (1);
 			if (str.empty())
 				continue ;
 			pb.getContact().setContactDs(str);
@@ -98,6 +98,11 @@ void	Commands(PhoneBook pb, std::string cmd, int index)
 {
 	if (cmd == "ADD")
 		AssignInfo(pb, index);
+	else if (cmd == "EXIT")
+	{
+		std::cout << "Thank you for using this crappy awesome PhoneBook!" << std::endl;
+		exit (0);
+	}
 }
 
 int	main(void)
@@ -111,7 +116,7 @@ int	main(void)
 	{
 		std::cout << "Enter a command: ";
 		if(!std::getline(std::cin, cmd))
-			return (0);
+			return (1);
 		if (cmd.empty())
 			continue ;
 		if (cmd != "ADD" && cmd != "SEARCH" && cmd != "EXIT")

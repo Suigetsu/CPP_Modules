@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@1337.student.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:10:36 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/05 22:47:33 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/08/06 13:18:36 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ PhoneBook::PhoneBook()
 
 PhoneBook::~PhoneBook()
 {
-	
+
 }
 
 void	PhoneBook::setContactIndex(int index)
