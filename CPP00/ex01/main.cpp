@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@1337.student.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 12:19:01 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/06 13:18:40 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/08/06 22:52:20 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ bool	CheckValidNbr(std::string str)
 	return (false);
 }
 
-void	AssignInfo(PhoneBook pb, int index)
+Contact	AssignInfo(void)
 {
 	std::string		str;
+	Contact			obj;
 	
 	while (1)
 	{
-		pb.setContactIndex(index);
 		while (1)
 		{
 			std::cout << "Enter the first name: ";
@@ -41,7 +41,7 @@ void	AssignInfo(PhoneBook pb, int index)
 				exit (1);
 			if (str.empty())
 				continue ;
-			pb.getContact().setContactFn(str);
+			obj.setContactFn(str);
 			break ;	
 		}
 		while (1)
@@ -51,7 +51,7 @@ void	AssignInfo(PhoneBook pb, int index)
 				exit (1);
 			if (str.empty())
 				continue ;
-			pb.getContact().setContactLn(str);
+			obj.setContactLn(str);
 			break ;
 		}
 		while (1)
@@ -61,7 +61,7 @@ void	AssignInfo(PhoneBook pb, int index)
 				exit (1);
 			if (str.empty())
 				continue ;
-			pb.getContact().setContactNn(str);
+			obj.setContactNn(str);
 			break ;
 		}
 		while (1)
@@ -76,7 +76,7 @@ void	AssignInfo(PhoneBook pb, int index)
 				std::cout << "Invalid input" << std::endl;
 				continue ;
 			}
-			pb.getContact().setContactNbr(str);
+			obj.setContactNbr(str);
 			break ;
 		}
 		while (1)
@@ -86,23 +86,102 @@ void	AssignInfo(PhoneBook pb, int index)
 				exit (1);
 			if (str.empty())
 				continue ;
-			pb.getContact().setContactDs(str);
+			obj.setContactDs(str);
 			break ;
 		}
 		std::cout << "Your contact has been added!!" << std::endl;
 		break ;
 	}
+	return (obj);
 }
 
-void	Commands(PhoneBook pb, std::string cmd, int index)
+void	printCharacters(std::string str)
 {
+	int		i;
+	size_t	len;
+
+	i = 0;
+	len = str.length();
+	if (len > 10)
+	{
+		while (i < 9)
+			std::cout << str[i++];
+		std::cout << ".";
+		return ;
+	}
+	std::cout << str;
+	while (len < 10)
+	{
+		std::cout << " ";
+		len++;
+	}
+}
+
+void	SearchCommand(PhoneBook *pb)
+{
+	std::string	index;
+	int			i;
+	
+	i = 0;
+	std::cout << "--------------------------------------------" << std::endl;
+	std::cout << "|INDEX     |FIRST NAME|LAST NAME |NICKNAME  |" << std::endl;
+	std::cout << "--------------------------------------------" << std::endl;
+	while (i < 8)
+	{
+		if (!pb->getContact()[i].getContactFn().empty())
+		{
+			std::cout << "|" << i << "         |";
+			printCharacters(pb->getContact()[i].getContactFn());
+			std::cout << "|";
+			printCharacters(pb->getContact()[i].getContactLn());
+			std::cout << "|";
+			printCharacters(pb->getContact()[i].getContactNn());
+			std::cout << "|" << std::endl;
+			std::cout << "--------------------------------------------" << std::endl;
+		}
+		else
+			break ;
+		i++;
+	}
+	while (1)
+	{
+		std::cout << "Enter an index: ";
+		std::cin >> index;
+		if (CheckValidNbr(index))
+		{
+			std::cout << "Invalid input, try again." << std::endl;
+			continue ;
+		}
+		i = std::stoi(index);
+		if (!(i >= 0 && i <= 7) || pb->getContact()[i].getContactFn().empty())
+		{
+			std::cout << "Index doesn't exist, try again." << std::endl;
+			continue ;
+		}
+		std::cout << "First Name: " << pb->getContact()[i].getContactFn() << std::endl;
+		std::cout << "Last Name: " << pb->getContact()[i].getContactLn() << std::endl;
+		std::cout << "Nickname: " << pb->getContact()[i].getContactNn() << std::endl;
+		std::cout << "Phone number: " << pb->getContact()[i].getContactNbr() << std::endl;
+		std::cout << "Darkest secret: " << pb->getContact()[i].getContactDs() << std::endl;
+		break ;
+	}
+}
+
+void	Commands(PhoneBook *pb, std::string cmd, int index)
+{
+	int	i;
+
+	i = 0;
+	pb->setContactIndex(index);
 	if (cmd == "ADD")
-		AssignInfo(pb, index);
-	else if (cmd == "EXIT")
+		pb->getContact()[index] = AssignInfo();
+	if (cmd == "EXIT")
 	{
 		std::cout << "Thank you for using this crappy awesome PhoneBook!" << std::endl;
 		exit (0);
 	}
+	if (cmd == "SEARCH")
+		SearchCommand(pb);
 }
 
 int	main(void)
@@ -111,8 +190,8 @@ int	main(void)
 	std::string	cmd;
 	int			counter;
 	
-	counter = 0;
-	while (1)
+	counter = -1;
+	while (counter < 8)
 	{
 		std::cout << "Enter a command: ";
 		if(!std::getline(std::cin, cmd))
@@ -124,7 +203,11 @@ int	main(void)
 			std::cout << "This command doesn't exist" << std::endl;
 			continue ;
 		}
-		Commands(pb, cmd, counter);
+		if (cmd == "ADD")
+			counter++;
+		if (counter == 8)
+			counter = 0;
+		Commands(&pb, cmd, counter);
 	}
 	return (0);
 }

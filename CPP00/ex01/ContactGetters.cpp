@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ContactSetters.cpp                                 :+:      :+:    :+:   */
+/*   ContactGetters.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlagrini <mlagrini@1337.student.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/05 21:47:55 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/06 20:20:40 by mlagrini         ###   ########.fr       */
+/*   Created: 2023/08/06 14:26:22 by mlagrini          #+#    #+#             */
+/*   Updated: 2023/08/06 17:19:33 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
-void    Contact::setContactNbr(std::string nbr)
+std::string	Contact::getContactNbr(void)
 {
-    this->phonenbr = nbr;
+	return (this->phonenbr);
 }
 
-void	Contact::setContactFn(std::string firstname)
+std::string	Contact::getContactFn(void)
 {
-    this->firstname = firstname;
+	return (this->firstname);
 }
 
-void	Contact::setContactLn(std::string lastname)
+std::string	Contact::getContactLn(void)
 {
-    this->lastname = lastname;
+	return (this->lastname);
 }
 
-void	Contact::setContactNn(std::string nickname)
+std::string	Contact::getContactNn(void)
 {
-    this->nickname = nickname;
+	return (this->nickname);
 }
 
-void	Contact::setContactDs(std::string darkscrt)
+std::string	Contact::getContactDs(void)
 {
-    this->darkscrt = darkscrt;
+	return (this->darkscrt);
 }

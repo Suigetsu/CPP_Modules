@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@1337.student.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 12:19:39 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/05 22:14:36 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/08/06 21:28:57 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class	PhoneBook
 		PhoneBook();
 		~PhoneBook();
 		void	setContactIndex(int index);
-		Contact	getContact(void);
+		Contact	*getContact(void);
 };
 
 #endif

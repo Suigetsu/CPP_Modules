@@ -6,11 +6,12 @@
 #    By: mlagrini <mlagrini@1337.student.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/29 12:06:50 by mlagrini          #+#    #+#              #
-#    Updated: 2023/08/05 21:53:37 by mlagrini         ###   ########.fr        #
+#    Updated: 2023/08/06 17:19:38 by mlagrini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC		=	ContactClass.cpp PhoneBookClass.cpp ContactSetters.cpp main.cpp
+SRC		=	ContactClass.cpp PhoneBookClass.cpp ContactSetters.cpp \
+			ContactGetters.cpp main.cpp
 OBJ		=	${SRC:.cpp=.o}
 CC		=	c++
 FLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic
