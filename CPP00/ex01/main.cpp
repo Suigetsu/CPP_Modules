@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@1337.student.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 12:19:01 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/06 22:52:20 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/08/07 13:00:33 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,13 +150,13 @@ void	SearchCommand(PhoneBook *pb)
 		if (CheckValidNbr(index))
 		{
 			std::cout << "Invalid input, try again." << std::endl;
-			continue ;
+			break ;
 		}
 		i = std::stoi(index);
 		if (!(i >= 0 && i <= 7) || pb->getContact()[i].getContactFn().empty())
 		{
 			std::cout << "Index doesn't exist, try again." << std::endl;
-			continue ;
+			break ;
 		}
 		std::cout << "First Name: " << pb->getContact()[i].getContactFn() << std::endl;
 		std::cout << "Last Name: " << pb->getContact()[i].getContactLn() << std::endl;
