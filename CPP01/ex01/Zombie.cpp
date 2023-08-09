@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@1337.student.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:17:28 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/09 15:10:52 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/08/09 15:56:11 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Zombie::Zombie()
 {
-
+	std::cout << "This zombie has been created" << std::endl;
 }
 
 Zombie::~Zombie()
