@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@1337.student.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 14:58:43 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/10 18:36:32 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/08/10 18:44:07 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 
 int	main(int ac, char **av)
 {
-	// std::fstream	file;
-	// std::string		line;
-	// std::string		filename;
-	// std::string		replaced;
-	// size_t			pos;
-	// bool			flag;
 	Sed	obj;
 
 	obj.pos = 0;
