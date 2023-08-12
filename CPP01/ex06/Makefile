@@ -14,7 +14,7 @@ SRC		=	main.cpp Harl.cpp
 OBJ		=	${SRC:.cpp=.o}
 CC		=	c++
 FLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic
-NAME	=	harl
+NAME	=	harlFilter
 RM		=	rm -rf
 
 all:	${NAME}

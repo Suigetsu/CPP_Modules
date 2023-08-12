@@ -51,21 +51,41 @@ void	Harl::error(void)
 	std::cout << "This is unacceptable! I want to speak to the manager now." << std::endl;
 }
 
-void	Harl::complain(std::string level)
+int	assignInt(std::string level)
 {
 	std::string	arr[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	int			i;
-	void	(Harl::*MemFn[4])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-	
-	i = 0;
+	int			i = 0;
+
 	while (i < 4)
 	{
-		if (arr[i] == level)
-		{
-			(this->*MemFn[i])();
-			return ;
-		}
+		if (level == arr[i])
+			return (i);
 		i++;
+	}
+	return (-1);
+}
+
+void	Harl::complain(std::string level)
+{
+	int			i;
+	void	(Harl::*MemFn[4])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+
+	i = assignInt(level);
+	switch (i)
+	{
+		case 0:
+			(this->*MemFn[0])();
+			return ;
+		case 1:
+			(this->*MemFn[1])();
+			return ;
+		case 2:
+			(this->*MemFn[2])();
+			return ;
+		case 3:
+			(this->*MemFn[3])();
+			return ;
 	}
 	std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 }
+
