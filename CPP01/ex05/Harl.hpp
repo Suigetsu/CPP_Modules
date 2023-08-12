@@ -28,6 +28,4 @@ class	Harl
 		void	complain(std::string level);
 };
 
-// typedef void	(Harl::*MemFn)(void);
-
 #endif
