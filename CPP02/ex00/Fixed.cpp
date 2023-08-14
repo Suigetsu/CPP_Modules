@@ -6,11 +6,13 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:35:37 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/14 12:47:51 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/08/14 17:51:21 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+
+const int	Fixed::fractValue = 8;
 
 Fixed::Fixed( void )
 {
