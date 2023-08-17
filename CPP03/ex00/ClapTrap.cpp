@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 15:02:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/16 19:07:31 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/08/17 10:50:46 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 ClapTrap::ClapTrap()
 {
-	std::cout << "The objects has been constructed" << std::endl;
+	std::cout << "The default constructed has been called" << std::endl;
 	this->name = "N/A";
 	this->HitPts = 10;
 	this->NrgPts = 10;
@@ -23,8 +23,11 @@ ClapTrap::ClapTrap()
 
 ClapTrap::ClapTrap(std::string name)
 {
-	std::cout << "The name has ben initialized" << std::endl;
+	std::cout << "The name has been initialized" << std::endl;
 	this->name = name;
+	this->HitPts = 10;
+	this->NrgPts = 10;
+	this->Ad = 0;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &obj)
@@ -35,6 +38,7 @@ ClapTrap::ClapTrap(const ClapTrap &obj)
 
 ClapTrap	&ClapTrap::operator=( const ClapTrap &obj )
 {
+	std::cout << "the copy assignement operator is here!" << std::endl;
 	if(this == &obj)
 		return (*this);
 	this->name = obj.name;
@@ -47,4 +51,38 @@ ClapTrap	&ClapTrap::operator=( const ClapTrap &obj )
 ClapTrap::~ClapTrap()
 {
 	std::cout << "The objects has been destroyed" << std::endl;
+}
+
+void		ClapTrap::attack( const std::string &target )
+{
+	if (!this->NrgPts || !this->HitPts)
+	{
+		std::cout << "ClapTrap " << this->name << " cannot perform this task." << std::endl;
+		return ;
+	}
+	std::cout << "ClapTrap " << this->name << " attacks " << target << ", causing " << this->Ad << " points of damage!" << std::endl;
+	this->NrgPts -= 1;
+}
+
+void	ClapTrap::takeDamage( unsigned int amount )
+{
+	if (!this->HitPts)
+	{
+		std::cout << "Stop, stop! ClapTrap " << this->name << " is already dead!" << std::endl;
+		return ;
+	}
+	std::cout << "ClapTrap " << this->name << " took damage of " << amount << ", leaving him with " << this->HitPts - amount << "HP" << std::endl;
+	this->HitPts -= amount;
+}
+
+void	ClapTrap::beRepaired( unsigned int amount )
+{
+	if (!this->NrgPts || !this->HitPts)
+	{
+		std::cout << "ClapTrap " << this->name << " cannot be repaired!" << std::endl;
+		return ;
+	}
+	std::cout << "ClapTrap " << this->name << " is repairing their Hit Points. The new Hit Points is " << this->HitPts + amount << "HP!" << std::endl;
+	this->HitPts += amount;
+	this->NrgPts -= 1;	
 }
