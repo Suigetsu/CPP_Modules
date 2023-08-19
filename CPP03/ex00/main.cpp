@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 15:10:46 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/17 10:41:43 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/08/17 15:31:12 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(void)
 		std::cout << std::endl;
 		// std::cout << "---------------------" << std::endl;
 		std::cout << "Options:" << std::endl;
-		std::cout << "  *Attack    *Repair    *Takedmg" << std::endl;
+		std::cout << "  *Attack    *Repair    *Takedmg    *Exit" << std::endl;
 		std::cout << "enter a command: ";
 		std::cin >> cmd;
 		if (cmd == "Attack")
@@ -57,6 +57,8 @@ int	main(void)
 			clap.takeDamage(amount);
 			trap.takeDamage(amount);
 		}
+		if (cmd == "Exit")
+			return (0);
 	}
 	std::cout << std::endl;
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 15:02:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/17 10:50:46 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/08/19 11:17:20 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 ClapTrap::ClapTrap()
 {
-	std::cout << "The default constructed has been called" << std::endl;
+	std::cout << "The default constructor has been called" << std::endl;
 	this->name = "N/A";
 	this->HitPts = 10;
 	this->NrgPts = 10;
