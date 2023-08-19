@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 11:01:33 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/19 11:14:33 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/08/19 11:51:29 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,10 @@ ScavTrap::~ScavTrap()
 
 void	ScavTrap::guardGate()
 {
+	if (!this->NrgPts || !this->HitPts)
+	{
+		std::cout << "ScavTrap can't do anything." << std::endl;
+		return ;
+	}
 	std::cout << "ScavTrap " << this->name << " is in keeper mode" << std::endl;
 }

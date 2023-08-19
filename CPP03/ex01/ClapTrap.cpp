@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 15:02:09 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/19 11:15:06 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/08/19 12:03:27 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,18 @@ ClapTrap::ClapTrap()
 {
 	std::cout << "ClapTrap constructor has been called" << std::endl;
 	this->name = "N/A";
-	this->HitPts = 100;
-	this->NrgPts = 50;
-	this->Ad = 20;
+	this->HitPts = 10;
+	this->NrgPts = 10;
+	this->Ad = 0;
 }
 
 ClapTrap::ClapTrap(std::string name)
 {
 	std::cout << "ClapTrap name has been initialized" << std::endl;
 	this->name = name;
-	this->HitPts = 100;
-	this->NrgPts = 50;
-	this->Ad = 20;
+	this->HitPts = 10;
+	this->NrgPts = 10;
+	this->Ad = 0;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &obj)
@@ -72,8 +72,11 @@ void	ClapTrap::takeDamage( unsigned int amount )
 		std::cout << "Stop, stop! ClapTrap " << this->name << " is already dead!" << std::endl;
 		return ;
 	}
-	std::cout << "ClapTrap " << this->name << " took damage of " << amount << ", leaving him with " << this->HitPts - amount << "HP" << std::endl;
-	this->HitPts -= amount;
+	if (amount > this->HitPts)
+		this->HitPts = 0;
+	else
+		this->HitPts -= amount;
+	std::cout << "ClapTrap " << this->name << " took damage of " << amount << ", leaving him with " << this->HitPts << "HP" << std::endl;
 }
 
 void	ClapTrap::beRepaired( unsigned int amount )
