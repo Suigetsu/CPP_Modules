@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 15:46:50 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/20 16:26:01 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/08/20 16:33:32 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(void)
 	{
 		std::cout << std::endl;
 		std::cout << "Options:" << std::endl;
-		std::cout << "  *Attack    *Repair    *Takedmg    *Stats    *Exit" << std::endl;
+		std::cout << "  *Attack    *Repair    *Takedmg    *Stats    *Keeper    *Exit" << std::endl;
 		std::cout << "enter a command: ";
 		std::cin >> cmd;
 		if (cmd == "Attack")
@@ -62,6 +62,12 @@ int	main(void)
 			noname.showStats();
 			named.showStats();
 			copied.showStats();
+		}
+		else if (cmd == "Keeper")
+		{
+			noname.guardGate();
+			named.guardGate();
+			copied.guardGate();
 		}
 		else if (cmd == "Exit")
 			return (0);

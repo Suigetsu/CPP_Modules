@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 16:05:56 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/20 16:28:09 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/08/20 16:32:38 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,14 @@ void	ScavTrap::attack(const std::string &target)
 	}
 	std::cout << "ScavTrap " << this->name << " attacks " << target << ", causing " << this->AD << " points of damage!" << std::endl;
 	this->NP -= 1;
+}
+
+void	ScavTrap::guardGate()
+{
+	if (!this->HP || !this->NP)
+	{
+		std::cout << "ScavTrap " << this->name << " cannot perform this task." << std::endl;
+		return ;
+	}
+	std::cout << "ScavTrap " << this->name << " is now in Gate keeper mode." << std::endl;
 }

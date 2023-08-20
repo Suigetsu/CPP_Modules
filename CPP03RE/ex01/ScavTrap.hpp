@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 16:05:53 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/20 16:26:39 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/08/20 16:30:58 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class	ScavTrap : public ClapTrap
 		~ScavTrap();
 		ScavTrap	&operator=(const ScavTrap &obj);
 		void		attack(const std::string &target);
+		void		guardGate( void );
 };
 
 #endif
