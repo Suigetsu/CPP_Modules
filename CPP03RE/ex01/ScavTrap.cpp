@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 16:05:56 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/20 16:32:38 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/08/20 16:56:02 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,5 @@ void	ScavTrap::guardGate()
 		return ;
 	}
 	std::cout << "ScavTrap " << this->name << " is now in Gate keeper mode." << std::endl;
+	this->NP -= 1;
 }
