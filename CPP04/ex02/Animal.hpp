@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:25:19 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/25 17:51:33 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/08/26 15:35:19 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class	Animal
 		Animal(const Animal &obj);
 		virtual ~Animal();
 		Animal			&operator=(const Animal &obj);
-		virtual std::string		getType() const = 0;
+		std::string		getType() const;
 		virtual void	makeSound() const = 0;
 };
 

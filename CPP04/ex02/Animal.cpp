@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 18:02:46 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/25 17:26:34 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/08/26 15:35:23 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ Animal::~Animal()
 	std::cout << "Animal destructor" << std::endl;
 }
 
-// std::string	Animal::getType() const
-// {
-// 	return (this->type);
-// }
+std::string	Animal::getType() const
+{
+	return (this->type);
+}
 
