@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 19:30:11 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/25 18:10:35 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/08/27 17:41:21 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,25 @@
 
 int main()
 {
-	const Animal* k = NULL;
+	const Dog* a = new Dog();
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
-	const Animal* a(j);
-	std::cout << a->getType() << std::endl;
-	a->makeSound();
-	// b->makeSound();
-	k->makeSound();
+	const Animal* copy(a);
+	const Animal* op = new Cat();
+	
+	std::cout << std::endl;
+	op->makeSound();
+	op = copy;
+	std::cout << std::endl;
+	i->makeSound();
+	j->makeSound();
+	copy->makeSound();
+	op->makeSound();
+	std::cout << std::endl;
 	delete j;//should not create a leak
 	delete i;
-	
-	// delete a;
+	// delete copy;
+	delete op;
+
 	return 0;
 }
