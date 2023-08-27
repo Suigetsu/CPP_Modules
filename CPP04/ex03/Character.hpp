@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 15:59:12 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/26 19:44:54 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/08/27 21:51:02 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ class	Character : public ICharacter
 	private:
 		std::string	name;
 		AMateria	*inventory[4];
+		AMateria	*floor[4];
 	public:
 		Character();
 		Character(const std::string &name);

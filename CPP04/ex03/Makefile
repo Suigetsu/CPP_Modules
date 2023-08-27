@@ -6,14 +6,14 @@
 #    By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/25 18:11:57 by mlagrini          #+#    #+#              #
-#    Updated: 2023/08/27 12:02:16 by mlagrini         ###   ########.fr        #
+#    Updated: 2023/08/27 20:37:47 by mlagrini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC		=	main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp
 OBJ		=	${SRC:.cpp=.o}
 CC		=	c++
-FLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic -fsanitize=address
+FLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic 
 RM		=	rm -rf
 NAME	=	a.out
 
