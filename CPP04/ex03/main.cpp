@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 18:11:53 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/08/27 22:10:26 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/08/29 17:44:32 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ int test()
 int	main()
 {
 	test();
-	system("leaks a.out");
+	// system("leaks a.out");
 	return 0;
 }
