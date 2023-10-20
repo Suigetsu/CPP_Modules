@@ -12,47 +12,30 @@
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(const std::string &name, int grade) : name(name)
+Bureaucrat::Bureaucrat() : name("N/A"), grade(1)
 {
-	GradeTooHighException(grade);
-	GradeTooLowException(grade);
-	this->grade = grade;
+
 }
 
-std::string Bureaucrat::getName()
+Bureaucrat::Bureaucrat(const std::string name, int grade) : name(name), grade(grade)
 {
-	return (this->name);
+
+	if (this->grade < 1)
+		throw (GradeTooHighException());
+	else if (this->grade > 150)
+		throw (GradeTooLowException());
 }
 
-int    Bureaucrat::getGrade()
+Bureaucrat::Bureaucrat(const Bureaucrat &obj)
 {
-	return (this->grade);
+	*this = obj;
 }
 
-void	Bureaucrat::GradeTooLowException(int grade)
+Bureaucrat	&Bureaucrat::operator=(const Bureaucrat &obj)
 {
-	try
-	{
-		if (grade > LOWEST_GRADE)
-			throw(grade);
-	}
-	catch(int grade)
-	{
-		std::cout << "The grade is too low" << std::endl;
-	}   
-}
-
-void	Bureaucrat::GradeTooHighException(int grade)
-{
-	try
-	{
-		if (grade < HIGHEST_GRADE)
-			throw(grade);
-	}
-	catch(int grade)
-	{
-		std::cout << "The grade is too high" << std::endl;
-	}
+	if (this != &obj)
+		this->grade = obj.getGrade();
+	return (*this);
 }
 
 Bureaucrat::~Bureaucrat()
@@ -60,24 +43,36 @@ Bureaucrat::~Bureaucrat()
 
 }
 
+std::string	Bureaucrat::getName() const
+{
+	return (this->name);
+}
+
+int	Bureaucrat::getGrade() const
+{
+	return (this->grade);
+}
+
+void	Bureaucrat::IncrementGrade()
+{
+	this->grade--;
+	if (this->grade < 1)
+		throw (GradeTooHighException());
+	else if (this->grade > 150)
+		throw (GradeTooLowException());
+}
+
+void	Bureaucrat::DecrementGrade()
+{
+	this->grade++;
+	if (this->grade < 1)
+		throw (GradeTooHighException());
+	else if (this->grade > 150)
+		throw (GradeTooLowException());
+}
+
 std::ostream	&operator<<( std::ostream &out, Bureaucrat &b )
 {
-	out << b.getName() << ", " << "bureaucrat grade " << b.getGrade();
+	out << b.getName() << ", bureaucrat grade " << b.getGrade() << ".";
 	return (out);
-}
-
-Bureaucrat	&Bureaucrat::operator++()
-{
-	--this->grade;
-	this->GradeTooLowException(this->grade);
-	this->GradeTooHighException(this->grade);
-	return (*this);
-}
-
-Bureaucrat	&Bureaucrat::operator--()
-{
-	++this->grade;
-	this->GradeTooLowException(this->grade);
-	this->GradeTooHighException(this->grade);
-	return (*this);
 }

@@ -17,6 +17,7 @@
 # define LOWEST_GRADE 150
 
 # include <iostream>
+# include <exception>
 
 class Bureaucrat
 {
@@ -24,14 +25,29 @@ class Bureaucrat
 		const std::string	name;
 		int					grade;
 	public:
-		Bureaucrat(const std::string &name, int grade);
+		Bureaucrat();
+		Bureaucrat(const std::string name, int grade);
+		Bureaucrat(const Bureaucrat &obj);
 		~Bureaucrat();
-		void		GradeTooHighException(int grade);
-		void		GradeTooLowException(int grade);
-		Bureaucrat	&operator++();
-		Bureaucrat	&operator--();
-		std::string	getName();
-		int	getGrade();
+		Bureaucrat	&operator=(const Bureaucrat &obj);
+		std::string	getName() const;
+		int	getGrade() const;
+		class	GradeTooHighException : public std::exception
+		{
+			public:
+				const char *what() const throw() {
+					return ("Grade is too high");
+				}
+		};
+		class	GradeTooLowException : public std::exception
+		{
+			public:
+				const char *what() const throw() {
+					return ("Grade is too low");
+				}
+		};
+		void	IncrementGrade();
+		void	DecrementGrade();
 };
 std::ostream	&operator<<( std::ostream &out, Bureaucrat &b );
 

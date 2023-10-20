@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/06 18:15:02 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/10/06 18:15:02 by mlagrini         ###   ########.fr       */
+/*   Created: 2023/10/17 15:56:30 by mlagrini          #+#    #+#             */
+/*   Updated: 2023/10/17 15:56:30 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,46 @@
 
 int	main()
 {
-	Bureaucrat	test("Med", 20), a("random", 1), b("exception", 150), c("high", 0), d("low", 151);
-
-
-	--test;
-	std::cout << test << std::endl;
-	++test;
-	std::cout << test << std::endl;
-
-	std::cout << "<><><><><><><><><><>" << std::endl << std::endl;
-	--a;
-	std::cout << a << std::endl;
-	++a;
-	std::cout << a << std::endl;
-
-	std::cout << "<><><><><><><><><><>" << std::endl << std::endl;
-	--b;
-	std::cout << b << std::endl;
-	++b;
-	std::cout << b << std::endl;
-
-
-	--c;
-	std::cout << c << std::endl;
-	++c;
-	std::cout << c << std::endl;
-
-
-	--d;
-	std::cout << d << std::endl;
-	++d;
-	std::cout << d << std::endl;
+	try
+	{
+		Bureaucrat def;
+		std::cout << def << std::endl;
+		def.DecrementGrade();
+		std::cout << def << std::endl;
+		def.IncrementGrade();
+		def.IncrementGrade();
+		std::cout << def << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	std::cout << "*********************" << std::endl;
+	try
+	{
+		Bureaucrat a("LOW", 1000);
+		std::cout << a << std::endl;
+		a.DecrementGrade();
+		std::cout << a << std::endl;
+		a.IncrementGrade();
+		std::cout << a << std::endl;
+	}
+	catch(const Bureaucrat::GradeTooLowException& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	std::cout << "*********************" << std::endl;
+	try
+	{
+		Bureaucrat a("HIGH", -1);
+		std::cout << a << std::endl;
+		a.DecrementGrade();
+		std::cout << a << std::endl;
+		a.IncrementGrade();
+		std::cout << a << std::endl;
+	}
+	catch(const Bureaucrat::GradeTooHighException& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 }
