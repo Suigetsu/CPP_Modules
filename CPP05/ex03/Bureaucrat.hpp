@@ -18,9 +18,9 @@
 
 # include <iostream>
 # include <exception>
-# include "Form.hpp"
+# include "AForm.hpp"
 
-class	Form;
+class	AForm;
 
 class Bureaucrat
 {
@@ -51,7 +51,8 @@ class Bureaucrat
 		};
 		void	IncrementGrade();
 		void	DecrementGrade();
-		void	signForm(Form &form);
+		void	signForm(AForm &form);
+		void	executeForm(AForm const &form);
 };
 std::ostream	&operator<<( std::ostream &out, Bureaucrat &b );
 

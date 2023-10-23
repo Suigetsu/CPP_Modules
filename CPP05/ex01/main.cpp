@@ -33,7 +33,7 @@ int	main()
 	{
 		Form a("A form", 6, 10);
 		Bureaucrat b("Someone", 3);
-		b.signForm(b, a);
+		b.signForm(a);
 		std::cout << a << b << std::endl;
 		b.IncrementGrade();
 		b.IncrementGrade();
@@ -48,12 +48,12 @@ int	main()
 	{
 		Form a("A form", 2, 10);
 		Bureaucrat b("Someone", 3);
-		b.signForm(b, a);
+		b.signForm(a);
 		std::cout << a << b << std::endl;
 		b.IncrementGrade();
-		b.signForm(b, a);
+		b.signForm(a);
 		b.IncrementGrade();
-		b.signForm(b, a);
+		b.signForm(a);
 		std::cout << a << b << std::endl;
 	}
 	catch (const std::exception &e)
