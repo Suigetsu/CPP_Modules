@@ -11,10 +11,10 @@
 # **************************************************************************** #
 
 SRC		=	main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp \
-			RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
+			RobotomyRequestForm.cpp ShrubberyCreationForm.cpp Intern.cpp
 OBJ		=	${SRC:.cpp=.o}
 CC		=	c++
-FLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic
+FLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic #-g -fsanitize=address
 NAME	=	forms
 RM		=	rm -rf
 

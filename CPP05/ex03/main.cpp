@@ -15,18 +15,26 @@
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "Intern.hpp"
 
 int	main()
 {
-	Bureaucrat	a("B name", 26);
-	PresidentialPardonForm	form("cool form");
-	RobotomyRequestForm	form2("another cool form");
-	ShrubberyCreationForm	form3("the coolest form ever");
+	Intern	a;
+	AForm	*form;
+	Bureaucrat	b("chihaja", 5);
+	form = a.makeForm("shrubbery creation", "test");
+	b.signForm(*form);
+	b.executeForm(*form);
+	delete form;
+	// Bureaucrat	a("B name", 26);
+	// PresidentialPardonForm	form("cool form");
+	// RobotomyRequestForm	form2("another cool form");
+	// ShrubberyCreationForm	form3("the coolest form ever");
 
-	a.signForm(form);
-	a.executeForm(form);
-	a.signForm(form2);
-	a.executeForm(form2);
-	a.signForm(form3);
-	a.executeForm(form3);
+	// a.signForm(form);
+	// a.executeForm(form);
+	// a.signForm(form2);
+	// a.executeForm(form2);
+	// a.signForm(form3);
+	// a.executeForm(form3);
 }

@@ -30,7 +30,7 @@ class	AForm
 		AForm();
 		AForm(const std::string name, const int SignGrade, const int ExecGrade);
 		AForm(const AForm &obj);
-		~AForm();
+		virtual ~AForm();
 		AForm	&operator=(const AForm &obj);
 		std::string	getName() const;
 		bool	getIndicator() const;
