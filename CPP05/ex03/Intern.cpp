@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:15:21 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/10/24 17:53:56 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/10/25 13:11:31 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,24 @@ Intern::~Intern()
 	
 }
 
-AForm	*Intern::createShrubbery(std::string target)
+AForm	*createShrubbery(std::string target)
 {
 	return (new ShrubberyCreationForm(target));
 }
 
-AForm	*Intern::createRobotomy(std::string target)
+AForm	*createRobotomy(std::string target)
 {
 	return (new RobotomyRequestForm(target));
 }
 
-AForm	*Intern::createPresidential(std::string target)
+AForm	*createPresidential(std::string target)
 {
 	return (new PresidentialPardonForm(target));
 }
 
 AForm	*Intern::makeForm(std::string formName, std::string target)
 {
-	AForm		*formArray[3] = {createShrubbery(target), createRobotomy(target), createPresidential(target)};
+	AForm		*(*formArray[3])(std::string target) = {&createShrubbery, &createRobotomy, &createPresidential};
 	int			i = 0;
 	std::string	namesArray[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
 	
@@ -59,10 +59,10 @@ AForm	*Intern::makeForm(std::string formName, std::string target)
 		if (formName == namesArray[i])
 		{
 			std::cout << "Intern creates " << formName << std::endl;
-			return (formArray[i]);
+			return ((*formArray[i])(target));
 		}
 		i++;
 	}
-	std::cout << "Intern couldn't create " << formName << " because it doesn't exist." << std::endl;
+	throw(AForm::UnknownFormName());
 	return (NULL);
 }

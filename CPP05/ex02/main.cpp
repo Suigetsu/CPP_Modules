@@ -18,6 +18,17 @@
 
 int	main()
 {
+	try
+	{
+		Bureaucrat	a("B name", 26);
+		RobotomyRequestForm	form2("another cool form");
+
+		a.executeForm(form2);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 	Bureaucrat	a("B name", 26);
 	PresidentialPardonForm	form("cool form");
 	RobotomyRequestForm	form2("another cool form");

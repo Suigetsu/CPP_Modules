@@ -62,6 +62,14 @@ class	AForm
 					return ("Form is not signed yet.");
 				}
 		};
+		class	UnknownFormName : public std::exception
+		{
+			public:
+				const char *what() const throw()
+				{
+					return ("Intern couldn't create the form.");
+				}
+		};
 		virtual void	execute(Bureaucrat const &executor) const = 0;
 };
 
