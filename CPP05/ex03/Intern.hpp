@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:15:16 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/10/25 13:06:47 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:49:22 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,5 @@ class	Intern
 		~Intern();
 		AForm	*makeForm(std::string formName, std::string target);
 };
-AForm	*createRobotomy(std::string target);
-AForm	*createShrubbery(std::string target);
-AForm	*createPresidential(std::string target);
 
 #endif
