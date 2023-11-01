@@ -6,7 +6,7 @@
 #    By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/31 16:50:50 by mlagrini          #+#    #+#              #
-#    Updated: 2023/11/01 10:31:40 by mlagrini         ###   ########.fr        #
+#    Updated: 2023/11/01 13:50:27 by mlagrini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ SRC		=	main.cpp Base.cpp
 OBJ		=	${SRC:.cpp=.o}
 CC		=	c++
 FLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic
-NAME	=	serializer
+NAME	=	typeidentifier
 RM		=	rm -rf
 
 all:	${NAME}

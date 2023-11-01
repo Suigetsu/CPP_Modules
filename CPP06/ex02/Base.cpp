@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 09:49:25 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/11/01 13:45:12 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/11/01 13:49:12 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,17 @@ Base::~Base()
 }
 
 Base	*generate(void)
-{	
+{
+	Base*	ptr = NULL;
 	srand(time(0));
 	if (rand() % 2)
-		return (new A);
+		return (ptr = new A);
 	else
 	{
 		if (rand() % 2)
-			return (new C);
+			return (ptr = new C);
 		else
-			return (new B);
+			return (ptr = new B);
 	}
 	return (new Base);
 }
