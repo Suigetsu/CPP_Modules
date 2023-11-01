@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 12:17:28 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/10/30 12:59:09 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/10/31 17:26:03 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	convertToChar(std::string literal, int type)
 	char *p_end;
 	errno = 0;
 	const long i = std::strtol(literal.c_str(), &p_end, 10);
-	if (errno == ERANGE || errno == EINVAL)
+	if (errno == ERANGE)
 		throw (ScalarConverter::ConvertErrorException());
 	if (type == CHAR_TYPE)
 	{
@@ -51,7 +51,7 @@ void	convertToInt(std::string literal, int type)
 	char *p_end;
 	errno = 0;
 	const long i = std::strtol(literal.c_str(), &p_end, 10);
-	if (errno == ERANGE || errno == EINVAL)
+	if (errno == ERANGE)
 		throw (ScalarConverter::ConvertErrorException());
 	if (type != CHAR_TYPE)
 		std::cout << "int: " << i << std::endl;
