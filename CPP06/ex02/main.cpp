@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 10:29:45 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/11/01 13:44:15 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/11/01 16:59:06 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ int	main()
 	Base *p = generate();
 	identify(p);
 	identify(*p);
+	delete p;
 	return (0);
 }

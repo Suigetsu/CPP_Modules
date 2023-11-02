@@ -6,11 +6,11 @@
 #    By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 13:02:28 by mlagrini          #+#    #+#              #
-#    Updated: 2023/10/31 16:50:33 by mlagrini         ###   ########.fr        #
+#    Updated: 2023/11/02 10:00:05 by mlagrini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC		=	main.cpp Serializer.cpp Data.cpp
+SRC		=	main.cpp Serializer.cpp
 OBJ		=	${SRC:.cpp=.o}
 CC		=	c++
 FLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic
