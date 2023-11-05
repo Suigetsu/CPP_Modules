@@ -5,26 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/02 16:02:16 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/11/05 11:17:37 by mlagrini         ###   ########.fr       */
+/*   Created: 2023/11/04 18:14:07 by mlagrini          #+#    #+#             */
+/*   Updated: 2023/11/05 11:19:40 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "whatever.hpp"
+#include "iter.hpp"
 
 int	main()
 {
-	int a = 2;
-	int b = 3;
-	::swap( a, b );
-	std::cout << "a = " << a << ", b = " << b << std::endl;
-	std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
-	std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
-	std::string c = "chaine1";
-	std::string d = "chaine2";
-	::swap(c, d);
-	std::cout << "c = " << c << ", d = " << d << std::endl;
-	std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
-	std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
-	return 0;
+	int	arr[] = {2, -1, 4, 15, 0};
+	int len = sizeof(arr) / sizeof(arr[0]);
+	std::string strArr[] = {"hello", "world", "1337", "most generic string"};
+	::iterate(arr, len, printElement<int>);
+	::iterate(strArr, sizeof(strArr)/sizeof(strArr[0]), printElement<std::string>);
 }

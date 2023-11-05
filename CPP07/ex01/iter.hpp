@@ -1,43 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   whatever.hpp                                       :+:      :+:    :+:   */
+/*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 11:40:03 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/11/05 10:26:39 by mlagrini         ###   ########.fr       */
+/*   Created: 2023/11/04 18:14:04 by mlagrini          #+#    #+#             */
+/*   Updated: 2023/11/05 11:10:31 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WHATEVER_HPP
-# define WHATEVER_HPP
+#ifndef ITER_HPP
+# define ITER_HPP
 
 # include <iostream>
-# include <iomanip>
 
-template <typename T>
-void	swap(T &a, T &b)
+template <typename T, typename F>
+void	iterate(T *arr, int len, F func)
 {
-	T c = a;
-	a = b;
-	b = c;
+	int i = 0;
+    while (i < len)
+        func(arr[i++]);
 }
-
 template <typename T>
-T   min(T a, T b)
+void    printElement(T element)
 {
-	if (a > b)
-		return (b);
-	return (a);
-}
-
-template <typename T>
-T   max(T a, T b)
-{
-    if (a > b)
-        return (a);
-    return (b);
+    std::cout << element << std::endl;
 }
 
 #endif
+
