@@ -18,7 +18,7 @@
 
 #endif
 
-template ;<typename T>
+template <typename T>
 T	&operator=(const T &obj)
 {
     

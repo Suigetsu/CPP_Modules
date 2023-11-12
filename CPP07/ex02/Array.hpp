@@ -14,6 +14,7 @@
 # define ARRAY_HPP
 
 # include <iostream>
+# include <cstdlib>
 
 class OutOfBoundException : public std::exception
 {
@@ -39,14 +40,17 @@ class	Array
 			this->n = n;
 			this->array = new T[this->n];
 		}
-		Array(const T &obj){
-			*this = obj;
+		Array(const Array &obj) : n(obj.n){
+			this->array = new T[obj.n];
+			std::copy(obj.array, obj.array + n, array);
 		}
-		T	&operator=(const T &obj){
-			if (*this != obj)
+		Array	&operator=(const Array &obj){
+			if (this != &obj)
 			{
 				delete []this->array;
-				this->array = obj.array;
+				this->array = new T[obj.n];
+				for (int i = 0; i < obj.n; ++i)
+					this->array[i] = obj.array[i];
 				this->n = obj.n;
 			}
 			return (*this);
@@ -54,10 +58,13 @@ class	Array
 		~Array(){
 			delete []this->array;
 		}
-		const T	&operator[](int index){
-			if (index > this->n || index < this->n)
+		T	&operator[](unsigned int index){
+			if (index >= this->n)
 				throw (OutOfBoundException());
-			return (T[index]);
+			return (this->array[index]);
+		}
+		unsigned int	size(){
+			return (this->n);
 		}
 };
 
