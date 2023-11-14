@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:14:04 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/11/05 11:10:31 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/11/14 10:25:14 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 # include <iostream>
 
 template <typename T, typename F>
-void	iterate(T *arr, int len, F func)
+void	iter(T *arr, int len, F func)
 {
 	int i = 0;
     while (i < len)
         func(arr[i++]);
 }
 template <typename T>
-void    printElement(T element)
+void    printElement(T &element)
 {
     std::cout << element << std::endl;
 }
