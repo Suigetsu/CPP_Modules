@@ -6,7 +6,7 @@
 #    By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 17:54:07 by mlagrini          #+#    #+#              #
-#    Updated: 2023/11/16 12:46:13 by mlagrini         ###   ########.fr        #
+#    Updated: 2023/11/16 17:21:18 by mlagrini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ RM		=	rm -rf
 
 all:	${NAME}
 
-%.o:%.cpp
+%.o:%.cpp easyfind.hpp
 		${CC} ${FLAGS} -c $< -o $@
 ${NAME}: ${OBJ}
 		${CC} ${FLAGS} ${OBJ} -o ${NAME}
