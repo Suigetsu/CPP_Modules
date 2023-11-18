@@ -6,7 +6,7 @@
 #    By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 18:22:58 by mlagrini          #+#    #+#              #
-#    Updated: 2023/11/17 18:23:11 by mlagrini         ###   ########.fr        #
+#    Updated: 2023/11/18 12:50:12 by mlagrini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ RM		=	rm -rf
 
 all:	${NAME}
 
-%.o:%.cpp Span.hpp
+%.o:%.cpp MutantStack.hpp
 		${CC} ${FLAGS} -c $< -o $@
 ${NAME}: ${OBJ}
 		${CC} ${FLAGS} ${OBJ} -o ${NAME}
