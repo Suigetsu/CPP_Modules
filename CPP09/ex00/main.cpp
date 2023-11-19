@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 17:14:23 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/11/19 18:19:15 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/11/19 18:47:56 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,18 @@
 
 int	main(int ac, char **av)
 {
-	struct tm tm;
+	// struct tm tm;
+	std::string test("2018-03-29,7950.61");
 	std::string s("2024-01-01");
 	std::string	str;
 	std::fstream	file;
-	std::map<std::string, BitcoinExchange> dataMap;
+	// std::map<std::string, BitcoinExchange> dataMap;
 	
+	
+	std::string token = test.substr(0, test.find(","));
+	test.erase(0, test.find(",") + 1);
+	std::cout << token << " " << test << std::endl;
+
 	
 	if (ac != 2 || strncmp(&av[1][strlen(av[1]) - 4], ".csv", 4))
 	{
