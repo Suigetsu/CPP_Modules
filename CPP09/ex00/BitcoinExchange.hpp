@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 17:14:25 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/11/18 18:21:52 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/11/19 18:19:23 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,21 @@
 class	BitcoinExchange
 {
 	private:
-		std::map<>
+		std::string dates;
+		double		prices;
+	public:
+		BitcoinExchange();
+		BitcoinExchange(std::string date, double price);
+		BitcoinExchange(const BitcoinExchange &obj);
+		BitcoinExchange	&operator=(const BitcoinExchange &obj);
+		~BitcoinExchange();
+		std::string	getDate();
+		double	getPrice();
 };
+
+	// if (strptime(s.c_str(), "%Y-%m-%d", &tm))
+	// 	std::cout << "valid date" << std::endl;
+	// else
+	// 	std::cout << "not valid date" << std::endl;
 
 #endif
