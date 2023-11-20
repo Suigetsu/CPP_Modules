@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 17:14:25 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/11/19 18:46:07 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/11/20 18:22:11 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,31 @@
 # include <algorithm>
 # include <map>
 # include <iterator>
+# include <iostream>
+# include <sstream>
+# include <fstream>
+# include <ctime>
+# include <string>
+# include <exception>
+
+class	cannotOpenFileException : public std::exception
+{
+	public:
+		const char * what() const throw ();
+};
 
 class	BitcoinExchange
 {
-	// private:
-	// 	std::string dates;
-	// 	double		prices;
-	// public:
-	// 	BitcoinExchange();
-	// 	BitcoinExchange(std::string date, double price);
-	// 	BitcoinExchange(const BitcoinExchange &obj);
-	// 	BitcoinExchange	&operator=(const BitcoinExchange &obj);
-	// 	~BitcoinExchange();
-	// 	std::string	getDate();
-	// 	double	getPrice();
+	private:
+		std::map<std::string, double>	dataMap;
+	public:
+		BitcoinExchange();
+		BitcoinExchange(const BitcoinExchange &obj);
+		BitcoinExchange	&operator=(const BitcoinExchange &obj);
+		~BitcoinExchange();
+		std::map<std::string, double>			&getMap();
+		std::map<std::string, double>::iterator	getBeginIterator();
+		std::map<std::string, double>::iterator	getEndIterator();
 };
-
-	// if (strptime(s.c_str(), "%Y-%m-%d", &tm))
-	// 	std::cout << "valid date" << std::endl;
-	// else
-	// 	std::cout << "not valid date" << std::endl;
 
 #endif
