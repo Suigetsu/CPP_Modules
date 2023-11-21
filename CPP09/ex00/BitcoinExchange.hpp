@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 17:14:25 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/11/20 18:22:11 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/11/21 10:44:14 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ class	BitcoinExchange
 		std::map<std::string, double>			&getMap();
 		std::map<std::string, double>::iterator	getBeginIterator();
 		std::map<std::string, double>::iterator	getEndIterator();
+		void	convertBTC(std::string filename);
 };
 
 #endif
