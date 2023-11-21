@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 17:14:28 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/11/20 15:16:19 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/11/21 09:50:24 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,33 @@ const char *cannotOpenFileException::what() const throw ()
 
 BitcoinExchange::BitcoinExchange()
 {
+	std::string		line;
+	std::fstream	dataFile;
 	
+	dataFile.open("data.csv");
+	if (!dataFile.is_open())
+		throw (cannotOpenFileException());
+	std::getline(dataFile, line);
+	while (std::getline(dataFile, line))
+	{
+		std::string token = line.substr(0, line.find(","));
+		line.erase(0, line.find(",") + 1);
+		this->dataMap[token] = std::strtod(line.c_str(), NULL);
+	}
+	dataFile.close();
 }
 
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &obj)
 {
-	*this = obj;
+	this->dataMap = obj.dataMap;
 }
 
 BitcoinExchange	&BitcoinExchange::operator=(const BitcoinExchange &obj)
 {
 	if (this != &obj)
 	{
-		return (*this);
+		this->dataMap = obj.dataMap;
 	}
 	return (*this);
 }

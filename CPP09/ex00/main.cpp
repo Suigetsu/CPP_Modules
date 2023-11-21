@@ -6,29 +6,11 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 17:14:23 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/11/20 18:21:44 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/11/21 09:52:00 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
-
-void	storeData(BitcoinExchange &obj)
-{
-	std::string		line;
-	std::fstream	dataFile;
-	
-	dataFile.open("data.csv");
-	if (!dataFile.is_open())
-		throw (cannotOpenFileException());
-	std::getline(dataFile, line);
-	while (std::getline(dataFile, line))
-	{
-		std::string token = line.substr(0, line.find(","));
-		line.erase(0, line.find(",") + 1);
-		obj.getMap()[token] = std::strtod(line.c_str(), NULL);
-	}
-	dataFile.close();
-}
 
 void	openInputFile(std::string filename, BitcoinExchange &obj)
 {
@@ -96,7 +78,6 @@ void	openInputFile(std::string filename, BitcoinExchange &obj)
 
 int	main(int ac, char **av)
 {
-	BitcoinExchange	obj;
 	
 	if (ac != 2)
 	{
@@ -105,7 +86,7 @@ int	main(int ac, char **av)
 	}
 	try
 	{
-		storeData(obj);
+		BitcoinExchange	obj;
 		openInputFile(av[1], obj);
 	}
 	catch(const std::exception& e)
