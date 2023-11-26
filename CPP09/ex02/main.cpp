@@ -6,24 +6,33 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:46:18 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/11/25 17:11:25 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/11/26 17:46:46 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-std::vector<std::vector<int> >	sorted(std::vector<std::vector<int> > &vec1, std::vector<std::vector<int> > &vec2)
+int cmpCount = 0;
+
+bool compareLastElement(const std::vector<int>& vec1, const std::vector<int>& vec2) {
+    return vec1.back() < vec2.back();
+}
+
+std::vector<std::vector<int> > sorted(std::vector<std::vector<int> > &vec1, std::vector<std::vector<int> > &vec2)
 {
 	std::vector<std::vector<int> > result;
-	std::vector<int>::iterator it;
+	std::vector<std::vector<int> >::iterator it;
+	size_t i = 0;
 	
-	for (size_t i = 0; i < vec1.size(); i++)
+	while (i < vec2.size())
 	{
-		it = std::lower_bound(vec1[i].begin(), vec1[i].end(), vec2[i].back());
-		vec1[i].insert(it, vec2[i].begin(), vec2[i].end());
+		it = std::lower_bound(vec1.begin(), vec1.end(), vec2[i], compareLastElement);
+		vec1.insert(it, vec2[i]);
+		i++;
 	}
 	return (vec1);
 }
+
 
 std::vector<std::vector<int> >	mergeall(std::vector<std::vector<int> > &vec1, std::vector<std::vector<int> > &vec2)
 {
@@ -47,7 +56,7 @@ std::vector<std::vector<int> >	mergeall(std::vector<std::vector<int> > &vec1, st
 	return (result);
 }
 
-std::vector<std::vector<int> >	mergeNbr(std::vector<std::vector<int> > vec)
+std::vector<std::vector<int> >	mergeNbr(std::vector<std::vector<int> > &vec)
 {
 	std::vector<std::vector<int> >	straggler;
 	
@@ -58,30 +67,71 @@ std::vector<std::vector<int> >	mergeNbr(std::vector<std::vector<int> > vec)
 		straggler.push_back(vec.back());
 		vec.pop_back();
 	}
-	std::vector<std::vector<int> > left(vec.begin(), vec.begin() + (vec.size() / 2));
-	std::vector<std::vector<int> > right(vec.begin() + (vec.size() / 2), vec.end());
-	left = mergeNbr(left);
-	right = mergeNbr(right);
-	vec = mergeall(left, right);
-	std::vector<std::vector<int> > res;
-	std::vector<std::vector<int> > pend;
-
-	res.push_back(vec[0]);
-	res.push_back(vec[1]);
-	for (size_t i = 2; i < vec.size(); i++)
+	// std::vector<std::vector<int> > final;
+	for (size_t i = 0; i < vec.size(); i++)
 	{
-		if (i % 2)
-			res.push_back(vec[i]);
-		else
-			pend.push_back(vec[i]);
+		if (vec[i].back() > vec[i+1].back())
+			std::swap(vec[i], vec[i+1]);
+		vec[i].insert(vec[i].end(), vec[i+1].begin(), vec[i+1].end());
+		// vec[i + 1].pop_back();
+		i += 1;
 	}
-	if (!straggler.empty())
-		pend.push_back(straggler[0]);
+	vec = mergeNbr(vec);
+
+	// std::vector<std::vector<int> > res;
+	// std::vector<std::vector<int> > pend;
+	// res.push_back(vec[0]);
+	// res.push_back(vec[1]);
+	// for (size_t i = 2; i < vec.size(); i++)
+	// {
+	// 	if (i % 2)
+	// 		res.push_back(vec[i]);
+	// 	else
+	// 		pend.push_back(vec[i]);
+	// }
+	// if (!straggler.empty())
+	// 	pend.push_back(straggler.front());
+	// if (res.empty() || pend.empty())
+	// 	return (vec);
 	return (vec);
-	std::vector<std::vector<int> >	final;
-	final = sorted(res, pend);
-	return (final);
 }
+
+// std::vector<std::vector<int> >	mergeNbr(std::vector<std::vector<int> > &vec)
+// {
+// 	std::vector<std::vector<int> >	straggler;
+	
+// 	if (vec.size() <= 1)
+// 		return (vec);
+// 	if (vec.size() % 2)
+// 	{
+// 		straggler.push_back(vec.back());
+// 		vec.pop_back();
+// 	}
+// 	std::vector<std::vector<int> > left(vec.begin(), vec.begin() + (vec.size() / 2));
+// 	std::vector<std::vector<int> > right(vec.begin() + (vec.size() / 2), vec.end());
+// 	left = mergeNbr(left);
+// 	right = mergeNbr(right);
+// 	vec = mergeall(left, right);
+// 	std::vector<std::vector<int> > res;
+// 	std::vector<std::vector<int> > pend;
+
+// 	res.push_back(vec[0]);
+// 	res.push_back(vec[1]);
+// 	for (size_t i = 2; i < vec.size(); i++)
+// 	{
+// 		if (i % 2)
+// 			res.push_back(vec[i]);
+// 		else
+// 			pend.push_back(vec[i]);
+// 	}
+// 	if (!straggler.empty())
+// 		pend.push_back(straggler.front());
+// 	if (res.empty() || pend.empty())
+// 		return (vec);
+// 	std::vector<std::vector<int> >	final;
+// 	final = sorted(res, pend);
+// 	return (final);
+// }
 
 // std::vector<std::vector<int> >	mergeNbrs(std::vector<std::vector<int> > doubleVec, std::vector<int> vec, int size)
 // {
