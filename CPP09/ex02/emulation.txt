@@ -63,3 +63,13 @@ Final mainChain: 121 , 963 , 1216 , 1782 , 2694 , 3646 , 4074 , 4151 , 4933 , 49
 ========================================================
 After: 121 963 1216 1782 2694 3646 4074 4151 4933 4958 5683 5686 6470 6829 7325 7356 8166 8329 8388 8864 9239 
 Number of comparaison: 74
+
+while (i < pairedVec.size())
+	{
+		size_t j = 0;
+		while (j < pairedVec[i].size())
+			std::cout << pairedVec[i][j++] << " ";
+		std::cout << "| ";
+		i++;
+	}
+	std::cout << std::endl << "~~~~~~~~~~~~~~~~~~~~" << std::endl;
