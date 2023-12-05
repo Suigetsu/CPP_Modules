@@ -6,11 +6,11 @@
 #    By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/22 09:46:21 by mlagrini          #+#    #+#              #
-#    Updated: 2023/11/27 13:07:09 by mlagrini         ###   ########.fr        #
+#    Updated: 2023/12/05 15:18:53 by mlagrini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC		=	main2.cpp PmergeMe.cpp
+SRC		=	main3.cpp PmergeMe.cpp
 OBJ		=	${SRC:.cpp=.o}
 CC		=	c++
 FLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic

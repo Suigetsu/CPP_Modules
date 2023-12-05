@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:46:25 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/11/25 12:19:13 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:51:57 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ const char	*PmergeMe::errorException::what() const throw()
 }
 
 PmergeMe::PmergeMe()
-{
-	
+{	
 }
 
 PmergeMe::PmergeMe(char **args)
@@ -36,6 +35,7 @@ PmergeMe::PmergeMe(char **args)
 				throw (errorException());
 			std::vector<int> arr;
 			arr.push_back(num);
+			this->lstSequence.push_back(num);
 			this->vec.push_back(arr);
 		}
 		i++;
