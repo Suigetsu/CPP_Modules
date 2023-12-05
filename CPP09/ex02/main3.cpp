@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:08:32 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/12/05 18:26:07 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/12/05 18:50:38 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,37 @@ std::vector<std::vector<int> >	mergeNbr(std::vector<std::vector<int> >	vec)
 		return (depairedVec);
 	mainChain = sortAndInsert(mainChain, pend, vectorOfIt);
 	return (mainChain);
+}
+
+std::list<std::list<int> >	mergeList(std::list<std::list<int> > lst)
+{
+	std::list<std::list<std::list<int> >::iterator>	listOfIt;
+	std::list<std::list<int> >						impairLst;
+	std::list<std::list<int> >						pairedLst;
+	std::list<std::list<int> >						depairedLst;
+	std::list<std::list<int> >						mainChain;
+	std::list<std::list<int> >						pend;
+	std::list<std::list<int> >::iterator 			itNext = lst.begin();
+
+	if (lst.size() == 1)
+		return (lst);
+	if (lst.size() % 2)
+	{
+		impairLst.push_back(lst.back());
+		lst.pop_back();
+	}
+	itNext++;
+	for (std::list<std::list<int> >::iterator it = lst.begin(); it != lst.end(); it ++)
+	{
+		if (itNext != lst.end())
+		{
+			if (it->back() > itNext->back())
+				std::swap(it, itNext);
+			lst.insert(it, itNext->begin(), itNext->end());
+			pairedLst.push_back(*it);
+		}
+		it = itNext;
+	}
 }
 
 int	main(int ac, char **av)
