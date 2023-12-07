@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 17:14:25 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/11/21 10:44:14 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/12/07 11:59:20 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@
 # include <exception>
 
 class	cannotOpenFileException : public std::exception
+{
+	public:
+		const char * what() const throw ();
+};
+
+class	badHeaderException : public std::exception
 {
 	public:
 		const char * what() const throw ();

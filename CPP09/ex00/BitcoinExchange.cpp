@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 17:14:28 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/11/21 10:44:19 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/12/07 12:09:11 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 const char *cannotOpenFileException::what() const throw ()
 {
 	return ("Error: could not open file.");
+}
+
+const char *badHeaderException::what() const throw ()
+{
+	return ("Error: Bad header");
 }
 
 BitcoinExchange::BitcoinExchange()
@@ -26,6 +31,8 @@ BitcoinExchange::BitcoinExchange()
 	if (!dataFile.is_open())
 		throw (cannotOpenFileException());
 	std::getline(dataFile, line);
+	if (line != "date,exchange_rate")
+		throw(cannotOpenFileException());
 	while (std::getline(dataFile, line))
 	{
 		std::string token = line.substr(0, line.find(","));
@@ -83,10 +90,19 @@ void	BitcoinExchange::convertBTC(std::string filename)
 	if (!file.is_open())
 		throw (cannotOpenFileException());
 	std::getline(file, line);
+	if (line != "date | value")
+		throw(badHeaderException());
 	while (std::getline(file, line))
 	{
+		if (line == "")
+			continue ;
 		std::string token = line.substr(0, line.find(" | "));
 		if (!strptime(token.c_str(), "%Y-%m-%d", &tm))
+		{
+			std::cout << "Error: bad input => " << token << std::endl;
+			continue ;
+		}
+		else if (std::strncmp(&token.c_str()[token.length() - 2], "00", token.length() - 2) == 0)
 		{
 			std::cout << "Error: bad input => " << token << std::endl;
 			continue ;
@@ -98,7 +114,7 @@ void	BitcoinExchange::convertBTC(std::string filename)
 		}
 		line.erase(0, line.find(" | ") + 3);
 		price = std::strtod(line.c_str(), &pEnd);
-		if (errno == EINVAL)
+		if (errno == EINVAL || *pEnd != '\0')
 		{
 			std::cout << "Error: bad input => " << line << std::endl;
 			errno = 0;
