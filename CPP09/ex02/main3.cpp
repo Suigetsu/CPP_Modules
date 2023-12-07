@@ -6,19 +6,25 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:08:32 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/12/05 18:50:38 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/12/07 10:32:10 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-int cmpCount = 0;
+
 int	debug = 0;
 
 bool	compareLastElement(const std::vector<int>& vec1, const std::vector<int>& vec2)
 {
 	++cmpCount;
 	return (vec1.back() < vec2.back());
+}
+
+bool	compareLastElementList(const std::list<int>& lst1, const std::list<int>& lst2)
+{
+	++cmpCount;
+	return (lst1.back() < lst2.back());
 }
 
 unsigned int	jacobsthalDiff(int index)
@@ -61,6 +67,36 @@ std::vector<std::vector<int> >	sortAndInsert(std::vector<std::vector<int> > &mai
 			mainChain.insert(it, *pendIt);
 			vecOfIt.erase(vecItIt);
 			updateIterators(vecOfIt, it);
+			pend.erase(pendIt);
+			index--;
+		}
+		i++;
+	}
+	return (mainChain);
+}
+
+std::list<std::list<int> >	sortAndInsertList(std::list<std::list<int> > &mainChain, std::list<std::list<int> > &pend, std::list<std::list<std::list<int> >::iterator> &listOfIt)
+{
+	std::list<std::list<int> >::iterator	it;
+	std::list<std::list<int> >::iterator	pendIt;
+	std::list<std::list<std::list<int> >::iterator>::iterator	listItIt;
+	size_t	index;
+	size_t	i = 0;
+
+	while (!pend.empty())
+	{
+		index = jacobsthalDiff(i);
+		if (index > pend.size())
+			index = pend.size();
+		while (index > 0)
+		{
+			listItIt = listOfIt.begin();
+			pendIt = pend.begin();
+			std::advance(listItIt, index - 1);
+			std::advance(pendIt, index - 1);
+			it = std::lower_bound(mainChain.begin(), *listItIt, *pendIt, compareLastElementList);
+			mainChain.insert(it, *pendIt);
+			listOfIt.erase(listItIt);
 			pend.erase(pendIt);
 			index--;
 		}
@@ -148,18 +184,66 @@ std::list<std::list<int> >	mergeList(std::list<std::list<int> > lst)
 		impairLst.push_back(lst.back());
 		lst.pop_back();
 	}
-	itNext++;
-	for (std::list<std::list<int> >::iterator it = lst.begin(); it != lst.end(); it ++)
+	for (std::list<std::list<int> >::iterator it = lst.begin(); it != lst.end(); std::advance(it, 2))
 	{
+		itNext = it;
+		itNext++;
 		if (itNext != lst.end())
 		{
 			if (it->back() > itNext->back())
-				std::swap(it, itNext);
-			lst.insert(it, itNext->begin(), itNext->end());
+				std::swap(*it, *itNext);
+			it->insert(it->end(), itNext->begin(), itNext->end());
 			pairedLst.push_back(*it);
 		}
-		it = itNext;
 	}
+	pairedLst = mergeList(pairedLst);
+	std::list<std::list<int> >::iterator outerIt = pairedLst.begin();
+	for (size_t i = 0; i < pairedLst.size(); i++)
+	{
+		std::list<int>::iterator innerIt = outerIt->begin();
+		std::list<int> left;
+		std::list<int> right;
+	
+		for (size_t j = 0; j < outerIt->size() / 2; j++)
+		{
+			left.push_back(*innerIt);
+			innerIt++;
+		}
+		for (size_t j = 0; j < outerIt->size() / 2; j++)
+		{
+			right.push_back(*innerIt);
+			innerIt++;
+		}
+		depairedLst.push_back(left);
+		depairedLst.push_back(right);
+		outerIt++;
+	}
+	int i = 1;
+	outerIt = depairedLst.begin();
+	mainChain.push_back(*outerIt);
+	outerIt++;
+	for(; outerIt != depairedLst.end(); outerIt++)
+	{
+		if (i % 2)
+		{
+			if (i != 1)
+				listOfIt.push_back(mainChain.insert(mainChain.end(), *outerIt));
+			else
+				mainChain.push_back(*outerIt);
+		}
+		else
+			pend.push_back(*outerIt);
+		i++;
+	}
+	if (!impairLst.empty())
+	{
+		pend.push_back(impairLst.back());
+		listOfIt.push_back(mainChain.end());
+	}
+	if (pend.empty())
+		return (depairedLst);
+	mainChain = sortAndInsertList(mainChain, pend, listOfIt);
+	return (mainChain);
 }
 
 int	main(int ac, char **av)
@@ -171,8 +255,12 @@ int	main(int ac, char **av)
 	}
 	try
 	{
+		std::clock_t start;
+		double duration;
+		start = std::clock();
 		PmergeMe obj(av);
 		std::vector<std::vector<int> > vec;
+		std::list<std::list<int> > lst;
 		vec = mergeNbr(obj.getDoubleVec());
 		size_t i = 0;
 		std::cout << "Before:	";
@@ -196,6 +284,30 @@ int	main(int ac, char **av)
 				std::cout << vec[i][j++] << " ";
 			}
 			i++;
+		}
+		duration = (std::clock() - start) / (double) CLOCKS_PER_SEC;
+		std::cout << std::endl;
+		std::cout << "Time to processa range of " << vec.size() << " elements with std::vector: " << duration << " us" << std::endl;
+		std::cout << std::endl;
+		lst = mergeList(obj.getDoubleLst());
+		std::cout << "Before:	";
+		std::list<std::list<int> >::iterator outerIt = obj.getDoubleLst().begin();
+		for (; outerIt != obj.getDoubleLst().end(); outerIt++)
+		{
+			for (std::list<int>::iterator innerIt = outerIt->begin(); innerIt != outerIt->end(); innerIt++)
+			{
+				std::cout << *innerIt << " ";
+			}
+		}
+		std::cout << std::endl;
+		std::cout << "After:	";
+		outerIt = lst.begin();
+		for (; outerIt != lst.end(); outerIt++)
+		{
+			for (std::list<int>::iterator innerIt = outerIt->begin(); innerIt != outerIt->end(); innerIt++)
+			{
+				std::cout << *innerIt << " ";
+			}
 		}
 		std::cout << std::endl;
 		std::cout << "Number of comparisions is: " << cmpCount << std::endl;
