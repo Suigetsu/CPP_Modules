@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:46:28 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/12/07 11:20:42 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/12/07 13:02:24 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ class	PmergeMe
 			public:
 				const char *what() const throw();
 		};
-		static vectorOfVector	&getDoubleVec();
-		static listOfList		&getDoubleLst();
 		template <typename T, typename subT>
 		static T	storeData(char **args)
 		{
