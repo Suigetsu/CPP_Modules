@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:46:25 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/12/07 11:21:03 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/12/09 11:17:07 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,41 +235,7 @@ listOfList	PmergeMe::mergeList(listOfList lst)
 	return (mainChain);
 }
 
-// PmergeMe::PmergeMe(char **args)
-// {
-// 	int	i = 1;
-	
-// 	while (args[i])
-// 	{
-// 		std::istringstream iss(args[i]);
-// 		int	num;
-// 		while (iss >> num || !iss.eof())
-// 		{
-// 			if (iss.fail() || num < 0)
-// 				throw (errorException());
-// 			std::vector<int> arr;
-// 			std::list<int>	initLst;
-// 			arr.push_back(num);
-// 			initLst.push_back(num);
-// 			this->vec.push_back(arr);
-// 			this->lst.push_back(initLst);
-// 		}
-// 		i++;
-// 	}
-// }
-
 PmergeMe::~PmergeMe()
 {
 	
 }
-
-// vectorOfVector	&PmergeMe::getDoubleVec()
-// {
-// 	return (this->vec);
-// }
-
-// listOfList	&PmergeMe::getDoubleLst()
-// {
-// 	return (this->lst);
-// }
-

@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 18:38:03 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/12/08 10:53:55 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/12/09 11:16:24 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int ac, char **av)
 {
 	if (ac != 2)
 	{
-		std::cerr << "Error" << std::endl;
+		std::cout << "Error" << std::endl;
 		return (1);
 	}
 	try
@@ -26,7 +26,7 @@ int	main(int ac, char **av)
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cout << e.what() << std::endl;
 		return (1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mlagrini <mlagrini@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 18:38:17 by mlagrini          #+#    #+#             */
-/*   Updated: 2023/12/08 10:54:20 by mlagrini         ###   ########.fr       */
+/*   Updated: 2023/12/09 11:16:37 by mlagrini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ class	RPN
 	public:
 		~RPN();
 		static int	calculateRPN(std::string expression);
-		// static int	calculateRPN(char *av);
 };
 
 #endif
